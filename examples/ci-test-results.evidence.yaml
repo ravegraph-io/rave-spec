@@ -1,0 +1,38 @@
+# RAVE Evidence File — CI Test Results
+# Spec: section 6.2 (Evidence)
+# This file contains a single Evidence entity demonstrating the methodology/result structure.
+
+evidence_id: "evidence-ci-test-results-001"
+type: "ci_log"
+reference:
+  uri: "https://github.com/example/repo/actions/runs/12345/artifacts/test-results.json"
+  format: "application/json"
+  checksum: "sha256:d2a84f4b8b650937ec8f73cd8be2c74add5a911ba64df27458ed8229da804a26"
+  authentication:
+    method: "bearer_token"
+    hint: "GITHUB_TOKEN"
+description: "Unit and integration test results for payments-api v2.3.1 deployment"
+timestamp: "2026-02-16T14:22:00Z"
+
+# Methodology describes the repeatable process (section 6.2.2.1)
+methodology:
+  description: "Run full unit and integration test suite against payments-api, including rollback scenario tests and API contract validation"
+  tooling: "pytest"
+  frequency: "P1D"
+  coverage: "All API endpoints, rollback paths, and database migration compatibility"
+
+# Result captures the point-in-time output (section 6.2.2.2)
+result:
+  outcome: "pass"
+  summary: "247 tests passed, 0 failed, 0 skipped"
+  run_id: "github-actions-run-12345"
+
+claim_ids:
+  - "claim-deploy-rollback-001"
+  - "claim-payments-api-uptime-001"
+metadata:
+  source_system: "github-actions"
+  environment: "staging"
+  commit_sha: "a1b2c3d4"
+freshness_window: "P7D"
+quality_score: 0.95

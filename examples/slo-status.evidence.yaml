@@ -1,0 +1,40 @@
+# RAVE Evidence File — SLO Status
+# Spec: section 6.2 (Evidence)
+# This file demonstrates the slo_status evidence type, capturing current
+# SLO compliance data — target vs actual performance against defined objectives.
+
+evidence_id: "evidence-slo-status-payments-api-001"
+type: "slo_status"
+reference:
+  uri: "https://app.datadoghq.com/api/v1/slo/abc123def456?from_ts=1708300800&to_ts=1708387200"
+  format: "application/json"
+  authentication:
+    method: "api_key"
+    hint: "DATADOG_API_KEY secret in vault"
+description: "SLO compliance for payments-api availability target (99.9% over 30-day rolling window)"
+timestamp: "2026-02-16T12:00:00Z"
+
+# Methodology describes how SLO status is collected (section 6.2.2.1)
+methodology:
+  description: "Query Datadog SLO API for the payments-api availability SLO, capturing target vs actual performance over the current 30-day rolling window"
+  tooling: "datadog"
+  frequency: "PT1H"
+  coverage: "All production traffic to payments-api across all regions"
+
+# Result captures the latest SLO status snapshot (section 6.2.2.2)
+result:
+  outcome: "pass"
+  summary: "Availability 99.95% against 99.9% target, 14.4 minutes of error budget remaining"
+  value: 99.95
+  unit: "percent"
+  run_id: "slo-check-2026-02-16T12"
+
+claim_ids:
+  - "claim-payments-api-uptime-001"
+metadata:
+  source_system: "datadog"
+  environment: "production"
+  slo_target: "99.9%"
+  slo_window: "30d"
+freshness_window: "PT12H"
+quality_score: 0.92

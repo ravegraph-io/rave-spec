@@ -1,3 +1,6 @@
+
+<img width="1051" height="701" alt="ChatGPT Image Mar 5, 2026, 11_39_15 AM (1)" src="https://github.com/user-attachments/assets/42cbddc0-82c9-4ff4-a3c9-2bf95ecfa878" />
+
 # RAVE
 
 **Reliability & Validation Engineering** — a claim-centric framework for making reliability explicit, falsifiable, and continuously validated.

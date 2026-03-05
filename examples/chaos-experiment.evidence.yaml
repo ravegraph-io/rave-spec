@@ -1,0 +1,36 @@
+# RAVE Evidence File — Chaos Experiment
+# Spec: section 6.2 (Evidence)
+# This file demonstrates an unattached evidence entity with a chaos experiment
+# methodology and a failed result outcome.
+
+evidence_id: "evidence-chaos-kafka-partition-loss-003"
+type: "chaos_result"
+reference:
+  uri: "file:///var/rave/chaos/experiments/kafka-partition-loss-2026-02-15.json"
+  format: "application/json"
+description: "Chaos experiment: simulated loss of 2 Kafka partitions for 5 minutes"
+timestamp: "2026-02-15T16:45:00Z"
+
+# Methodology describes the experiment design (section 6.2.2.1)
+methodology:
+  description: "Simulate loss of 2 out of 6 Kafka partitions for the order-events topic under sustained producer load (500 msg/s), observe consumer group recovery time and message loss"
+  tooling: "chaos-mesh"
+  coverage: "Kafka consumer failover path for order-events topic in staging"
+  # No frequency — chaos experiments are run ad-hoc
+
+# Result captures the experiment outcome (section 6.2.2.2)
+# This example shows a 'fail' outcome — the system recovered but exceeded SLO thresholds
+result:
+  outcome: "fail"
+  summary: "Consumer group recovered in 45 seconds, 0 messages lost, but 12 messages delayed >5s exceeding SLO"
+  value: 45
+  unit: "seconds"
+  run_id: "exp-kafka-003"
+
+claim_ids: []  # Unattached — no claim currently references this evidence
+metadata:
+  source_system: "chaos-mesh"
+  environment: "staging"
+  experiment_id: "exp-kafka-003"
+freshness_window: "P30D"
+quality_score: 0.85
